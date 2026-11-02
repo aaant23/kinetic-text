@@ -1,0 +1,99 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+
+<div class="kinetic-wrapper">
+  <div class="static-line">THE ART OF BEING</div>
+  <div class="dynamic-line">
+    <span id="dynamic-word">UNMISSABLE</span>
+  </div>
+  <h1 class="subtext">Print and digital marketing services for growing brands.</h1>
+</div>
+
+<style>
+  .kinetic-wrapper {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box; 
+  }
+
+  /* Large white heading line */
+  .static-line {
+    color: #FFFFFF;
+    font-size: clamp(2.4rem, 8vw, 7.7rem);
+    line-height: 0.95;
+    white-space: nowrap;
+  }
+
+  /* Container for the dynamic word on a new line */
+  .dynamic-line {
+    display: block;
+    line-height: 1;
+    margin-top: 0.1em;
+  }
+
+  /* Main cycling word styling */
+  #dynamic-word {
+    display: inline-block;
+    color: #FF00AA;
+    font-size: clamp(3.4rem, 11vw, 10.5rem);
+    transform-origin: left center;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+  }
+
+  /* Transition class added/removed by JavaScript */
+  #dynamic-word.word-hidden {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  /* Single-line white tagline styling */
+  .subtext {
+    color: #FFFFFF;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: normal;
+    white-space: nowrap;
+    font-size: clamp(0.75rem, 2vw, 2rem);
+    line-height: 1;
+    margin-top: 1.2rem;
+    margin-bottom: 0;
+  }
+</style>
+
+<script>
+  (function() {
+    const words = ["UNMISSABLE", "BOLD", "ICONIC"];
+    let index = 0;
+
+    function runAnimation() {
+      const target = document.getElementById("dynamic-word");
+      if (!target) return;
+
+      setInterval(() => {
+        // Step 1: Trigger fade-out and slide-down
+        target.classList.add("word-hidden");
+
+        // Step 2: Swap the text word mid-transition, then fade back in
+        setTimeout(() => {
+          index = (index + 1) % words.length;
+          target.textContent = words[index];
+          target.classList.remove("word-hidden");
+        }, 400);
+
+      }, 2800);
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", runAnimation);
+    } else {
+      runAnimation();
+    }
+  })();
+</script>
